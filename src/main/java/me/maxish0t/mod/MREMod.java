@@ -2,9 +2,7 @@ package me.maxish0t.mod;
 
 import me.maxish0t.mod.common.commands.ResetDataCommand;
 import me.maxish0t.mod.client.gui.overlay.LevelAmounts;
-import me.maxish0t.mod.common.handlers.EventHandler;
-import me.maxish0t.mod.common.handlers.PlayerData;
-import me.maxish0t.mod.common.handlers.RewardHandler;
+import me.maxish0t.mod.common.content.gathering.mining.MiningEvents;
 import me.maxish0t.mod.server.ModNetwork;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
@@ -48,10 +46,8 @@ public class MREMod
 
         ModNetwork.register();
 
-        MinecraftForge.EVENT_BUS.register(new EventHandler());
-        MinecraftForge.EVENT_BUS.register(new PlayerData());
         MinecraftForge.EVENT_BUS.register(new LevelAmounts());
-        MinecraftForge.EVENT_BUS.register(new RewardHandler());
+        MinecraftForge.EVENT_BUS.register(new MiningEvents());
     }
 
     @SubscribeEvent

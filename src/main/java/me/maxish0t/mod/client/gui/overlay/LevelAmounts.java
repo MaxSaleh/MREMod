@@ -1,10 +1,14 @@
 package me.maxish0t.mod.client.gui.overlay;
 
 import com.mojang.blaze3d.vertex.PoseStack;
-import me.maxish0t.mod.client.gui.components.toasts.AbilitiesToast;
+import me.maxish0t.mod.client.gui.components.toasts.MREToast;
+import me.maxish0t.mod.common.content.gathering.mining.MiningEvents;
+import me.maxish0t.mod.server.ModNetwork;
+import me.maxish0t.mod.server.packets.SendToastPacket;
 import me.maxish0t.mod.server.packets.mining.BlockBreakAmountPacket;
 import me.maxish0t.mod.server.packets.mining.DoubleDropsPacket;
 import me.maxish0t.mod.server.packets.mining.PickaxeSpeedPacket;
+import me.maxish0t.mod.utilities.ModUtil;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screens.DeathScreen;
@@ -13,8 +17,10 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.PickaxeItem;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fmllegacy.network.PacketDistributor;
 
 public class LevelAmounts {
+    private boolean hasShown = false;
 
     @SubscribeEvent
     public void renderOverlay(RenderGameOverlayEvent.Post event) {
@@ -52,10 +58,6 @@ public class LevelAmounts {
                     }
                 }
             }
-        }
-
-        if (event.getType() == RenderGameOverlayEvent.ElementType.LAYER) {
-            minecraft.getToasts().addToast(new AbilitiesToast());
         }
     }
 }

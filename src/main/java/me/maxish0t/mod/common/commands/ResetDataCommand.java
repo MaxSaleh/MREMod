@@ -3,7 +3,7 @@ package me.maxish0t.mod.common.commands;
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.context.CommandContext;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
-import me.maxish0t.mod.common.handlers.PlayerData;
+import me.maxish0t.mod.common.content.PlayerContent;
 import me.maxish0t.mod.utilities.StringFunctions;
 import net.minecraft.ChatFormatting;
 import net.minecraft.commands.CommandSourceStack;
@@ -33,7 +33,7 @@ public class ResetDataCommand {
             player = source.getPlayerOrException();
 
             if (player != null) {
-                PlayerData.resetAllData(player);
+                PlayerContent.resetAllData(player);
             }
         }
         catch (CommandSyntaxException ex) {

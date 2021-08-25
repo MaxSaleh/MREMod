@@ -1,5 +1,6 @@
 package me.maxish0t.mod.server;
 
+import me.maxish0t.mod.server.packets.SendToastPacket;
 import me.maxish0t.mod.server.packets.mining.BlockBreakAmountPacket;
 import me.maxish0t.mod.server.packets.mining.DoubleDropsPacket;
 import me.maxish0t.mod.server.packets.mining.PickaxeSpeedPacket;
@@ -42,6 +43,12 @@ public class ModNetwork {
                 PickaxeSpeedPacket::encode,
                 PickaxeSpeedPacket::decode,
                 PickaxeSpeedPacket::handle
+        );
+        CHANNEL.registerMessage(networkId++,
+                SendToastPacket.class,
+                SendToastPacket::encode,
+                SendToastPacket::decode,
+                SendToastPacket::handle
         );
     }
 }
