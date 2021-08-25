@@ -40,4 +40,7 @@
 Contributors names and contact info
 
  [@MaxSaleh](https://github.com/MaxSaleh)
+ 
+ ## License
 
+This project is licensed under the [ALL RIGHTS RESERVERED] License - see the LICENSE.txt file for details
