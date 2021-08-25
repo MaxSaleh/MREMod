@@ -3,8 +3,8 @@
   
 # MRE Player Content
 
-✔️ = Feature Added.
-❌ = Feature Not Added Yet.
+### ✔️ = Feature Added.
+### ❌ = Feature Not Added Yet.
  
  ### Gathering: 
  - Mining
