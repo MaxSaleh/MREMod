@@ -2,6 +2,9 @@
  Minecraft RPG Experience
   
 # MRE Player Content
+
+✔️ = Feature Added.
+❌ = Feature Not Added Yet.
  
  ### Gathering: 
  - Mining
