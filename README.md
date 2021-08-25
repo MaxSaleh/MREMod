@@ -1,7 +1,7 @@
 # MREMod
  Minecraft RPG Experience
  
-###NOTE: This is a WIP Mod. If you find any issues or have ideas please post it on our curseforge page or here.
+### NOTE: This is a WIP Mod. If you find any issues or have ideas please post it on our curseforge page or here.
  
 # MRE Player Content
  
