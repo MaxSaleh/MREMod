@@ -36,13 +36,16 @@ public class MiningEvents {
     public void logIn(PlayerEvent.PlayerLoggedInEvent event) {
         Player player = event.getPlayer();
 
-        /**
+        CompoundTag entityData = player.getPersistentData();
+        CompoundTag persistedData = entityData.getCompound(Player.PERSISTED_NBT_TAG);
+        entityData.put(Player.PERSISTED_NBT_TAG, persistedData);
+
         ModNetwork.CHANNEL.send(PacketDistributor.PLAYER.with(() -> (ServerPlayer) player), new BlockBreakAmountPacket(
-                MiningAbilitiesData.getAbilitiesInt(MiningAbilitiesEnum.MINING_AMOUNT, player)));
+                persistedData.getInt("block_break_data")));
         ModNetwork.CHANNEL.send(PacketDistributor.PLAYER.with(() -> (ServerPlayer) player), new PickaxeSpeedPacket(
-                MiningAbilitiesData.getAbilitiesInt(MiningAbilitiesEnum.MINING_SPEED, player)));
+                persistedData.getInt("block_mining_speed")));
         ModNetwork.CHANNEL.send(PacketDistributor.PLAYER.with(() -> (ServerPlayer) player), new DoubleDropsPacket(
-                MiningAbilitiesData.getAbilitiesBoolean(MiningAbilitiesEnum.MINING_DOUBLE_DROPS, player)));**/
+                persistedData.getBoolean("mining_double_drops")));
     }
 
     /**
