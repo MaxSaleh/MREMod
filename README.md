@@ -39,5 +39,5 @@
 
 Contributors names and contact info
 
- [@MaxSaleh](https://discord.gg/5mjxjhU)
+ [@MaxSaleh](https://github.com/MaxSaleh)
 
