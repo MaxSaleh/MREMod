@@ -5,9 +5,26 @@
  
 # MRE Player Content
  
- ### Gathering: Mining, Woodcutting, Herbalism, Excavation, and Fishing.
- ### Combat: Unarmed, Archery, Swoards, Axes, Taming.
- ### Misc: Repair, Acrobatics, Alchemy, Salvage, Smelting.
+ ### Gathering: 
+ - Mining
+ - Woodcutting
+ -  Herbalism
+ -  Excavation
+ -  Fishing
+ 
+ ### Combat: 
+ - Unarmed
+ - Archery
+ - Swoards
+ - Axes
+ - Taming
+ 
+ ### Misc:
+ - Repair
+ - Acrobatics
+ - Alchemy
+ - Salvage
+ - Smelting
 
 # Skills
 
