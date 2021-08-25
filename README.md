@@ -1,22 +1,15 @@
-[![Contributors][contributors-shield]][contributors-url]
-[![Forks][forks-shield]][forks-url]
-[![Stargazers][stars-shield]][stars-url]
-[![Issues][issues-shield]][issues-url]
-[![MIT License][license-shield]][license-url]
-[![LinkedIn][linkedin-shield]][linkedin-url]
-
 # MREMod
  Minecraft RPG Experience
  
  NOTE: This is a WIP Mod. If you find any issues or have ideas please post it on our curseforge page or here.
  
- <<-->> MRE Player Content  <<-->>
+# MRE Player Content
  
  - Gathering: Mining, Woodcutting, Herbalism, Excavation, and Fishing.
  - Combat: Unarmed, Archery, Swoards, Axes, Taming.
  - Misc: Repair, Acrobatics, Alchemy, Salvage, Smelting.
 
-<<-->> Skills <<-->>
+# Skills
 
 - Mining Skill (Increase levels by 1 every time you break any type of ore block)
 - Abilities: 
