@@ -1,5 +1,6 @@
 package me.maxish0t.mod;
 
+import me.maxish0t.mod.client.handler.KeyInputHandler;
 import me.maxish0t.mod.common.commands.ResetDataCommand;
 import me.maxish0t.mod.client.gui.overlay.LevelAmounts;
 import me.maxish0t.mod.common.content.gathering.mining.MiningEvents;
@@ -15,6 +16,7 @@ public class MREMod {
     public MREMod() {
         ModNetwork.register();
         MinecraftForge.EVENT_BUS.register(this);
+        MinecraftForge.EVENT_BUS.register(new KeyInputHandler());
         MinecraftForge.EVENT_BUS.register(new LevelAmounts());
         MinecraftForge.EVENT_BUS.register(new MiningEvents());
     }
