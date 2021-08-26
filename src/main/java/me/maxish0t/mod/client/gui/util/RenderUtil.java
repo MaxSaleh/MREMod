@@ -1,4 +1,4 @@
-package me.maxish0t.mod.utilities;
+package me.maxish0t.mod.client.gui.util;
 
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.*;
@@ -25,7 +25,7 @@ public class RenderUtil {
      * @param textureHeight
      */
     public static void drawTexture(PoseStack poseStack, ResourceLocation image, int x, int y, int z, int width, int height, float srcX, float srcY, float srcWidth, float srcHeight, float textureWidth, float textureHeight) {
-        //Minecraft.getInstance().getTextureManager().getTexture(image);
+        RenderSystem.setShaderTexture(0, image);
         RenderSystem.setShader(GameRenderer::getPositionTexShader);
         BufferBuilder bufferbuilder = Tesselator.getInstance().getBuilder();
         Matrix4f pose = poseStack.last().pose();

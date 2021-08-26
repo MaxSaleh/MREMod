@@ -63,10 +63,8 @@ public class MiningEvents {
         if (player.getMainHandItem().getItem() instanceof PickaxeItem ||
                 player.getOffhandItem().getItem() instanceof PickaxeItem) {
             if (blocks instanceof OreBlock || blocks instanceof RedStoneOreBlock) {
-                int amount = persistedData.getInt("block_break_data");
-                int addAmount = amount + 1;
-                persistedData.putInt("block_break_data", addAmount);
-                ModNetwork.CHANNEL.sendToServer(new BlockBreakAmountPacket(amount));
+                persistedData.putInt("block_break_data", persistedData.getInt("block_break_data") + 1);
+                ModNetwork.CHANNEL.sendToServer(new BlockBreakAmountPacket(persistedData.getInt("block_break_data")));
             }
         }
     }
