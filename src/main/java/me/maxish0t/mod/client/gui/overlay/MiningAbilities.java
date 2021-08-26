@@ -1,17 +1,12 @@
 package me.maxish0t.mod.client.gui.overlay;
 
 import com.mojang.blaze3d.vertex.PoseStack;
-import me.maxish0t.mod.client.gui.components.toasts.MREToast;
 import me.maxish0t.mod.client.gui.util.RenderUtil;
 import me.maxish0t.mod.client.handler.KeyInputHandler;
-import me.maxish0t.mod.common.content.gathering.mining.MiningEvents;
-import me.maxish0t.mod.server.ModNetwork;
-import me.maxish0t.mod.server.packets.SendToastPacket;
 import me.maxish0t.mod.server.packets.mining.BlockBreakAmountPacket;
 import me.maxish0t.mod.server.packets.mining.DoubleDropsPacket;
 import me.maxish0t.mod.server.packets.mining.PickaxeSpeedPacket;
 import me.maxish0t.mod.utilities.ModReference;
-import me.maxish0t.mod.utilities.ModUtil;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screens.DeathScreen;
@@ -21,21 +16,19 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.PickaxeItem;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fmllegacy.network.PacketDistributor;
 
-public class LevelAmounts {
-    private boolean hasShown = false;
+public class MiningAbilities {
 
     @SubscribeEvent
     public void renderOverlay(RenderGameOverlayEvent.Post event) {
         Minecraft minecraft = Minecraft.getInstance();
+        Player player = (Player) minecraft.getCameraEntity();
+        PoseStack poseStack = event.getMatrixStack();
+
+        int height = minecraft.getWindow().getGuiScaledHeight();
+        int width = minecraft.getWindow().getGuiScaledWidth();
 
         if (event.getType() == RenderGameOverlayEvent.ElementType.ALL) {
-            Player player = (Player) minecraft.getCameraEntity();
-            PoseStack poseStack = event.getMatrixStack();
-
-            int height = minecraft.getWindow().getGuiScaledHeight();
-            int width = minecraft.getWindow().getGuiScaledWidth();
 
             CompoundTag entityData = player.getPersistentData();
             CompoundTag persistedData = entityData.getCompound(Player.PERSISTED_NBT_TAG);

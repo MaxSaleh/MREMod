@@ -33,6 +33,8 @@ public class KeyInputHandler {
             if (keyEntry.keyBinding.isDown()) {
                 handleKeyInput(keyEntry.keyType);
                 break;
+            } else {
+                showMiningOverlay = false;
             }
         }
     }
