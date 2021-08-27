@@ -7,6 +7,7 @@ import me.maxish0t.mod.server.packets.mining.BlockBreakAmountPacket;
 import me.maxish0t.mod.server.packets.mining.DoubleDropsPacket;
 import me.maxish0t.mod.server.packets.mining.PickaxeSpeedPacket;
 import me.maxish0t.mod.utilities.ModReference;
+import me.maxish0t.mod.utilities.ModUtil;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screens.DeathScreen;
@@ -39,30 +40,35 @@ public class MiningAbilities {
                         player.getOffhandItem().getItem() instanceof PickaxeItem) {
 
                     if (KeyInputHandler.showMiningOverlay) {
-                        minecraft.font.draw(poseStack, ChatFormatting.BLUE + "Mining Level: " +
-                                BlockBreakAmountPacket.amount, 40.0F, 5.0F, 0xffffff);
+                        RenderUtil.drawText(poseStack, ChatFormatting.BLUE + "Mining Level: " +
+                                BlockBreakAmountPacket.amount, 40.0F, 5.0F);
 
                         int blockBreakPercentage = PickaxeSpeedPacket.increasePercentage;
-                        minecraft.font.draw(poseStack, ChatFormatting.BLUE + "Abilities:", 40.0F, 20.0F, 0xffffff);
+                        RenderUtil.drawText(poseStack, ChatFormatting.BLUE + "Unlocked Abilities:", 40.0F, 20.0F);
 
                         if (PickaxeSpeedPacket.increasePercentage != 0) {
-                            minecraft.font.draw(poseStack, ChatFormatting.RED + "- " +
+                            RenderUtil.drawText(poseStack, ChatFormatting.RED + "- " +
                                     ChatFormatting.BLUE + "Mining Speed" + ": " + ChatFormatting.GREEN + "+" +
-                                    ChatFormatting.BLUE + blockBreakPercentage + "%", 40.0F, 30.0F, 0xffffff);
+                                    ChatFormatting.BLUE + blockBreakPercentage + "%", 40.0F, 30.0F);
                         }
 
                         if (DoubleDropsPacket.canDoubleDrop) {
-                            minecraft.font.draw(poseStack, ChatFormatting.RED + "- " +
-                                    ChatFormatting.BLUE + "25% Double Block Drops", 40.0F, 40.0F, 0xffffff);
+                            RenderUtil.drawText(poseStack, ChatFormatting.RED + "- " +
+                                    ChatFormatting.BLUE + "25% Double Block Drops", 40.0F, 40.0F);
                         }
 
                         ResourceLocation image = new ResourceLocation(ModReference.MODID, "textures/icons/gathering/mining.png");
                         RenderUtil.drawTexture(poseStack, image, 5, 5, 0, 32, 32, 32, 32,
                                 32, 32, 32, 32);
                     } else {
-                        minecraft.font.draw(poseStack, ChatFormatting.RED + "Hold V To Open Abilities Menu For Item",
-                                5.0F, 5.0F, 0xffffff);
+                        RenderUtil.drawText(poseStack, ChatFormatting.RED + "Hold V To Open Abilities Menu For Item",
+                                5.0F, 5.0F);
                     }
+
+                    RenderUtil.drawRectWithOutline(poseStack, width - 185,  height - 250, 100, 20, 1426063360, 587202559, 1);
+                    RenderUtil.drawRectangle(poseStack, 10,  10, 5, 5, 1006063360);
+
+                    // givenWidth, givenHeight,
                 }
             }
         }

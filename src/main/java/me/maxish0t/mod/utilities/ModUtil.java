@@ -37,12 +37,18 @@ public class ModUtil {
 
     /**
      * Increase a number by a percentage.
-     * @param originalValue
-     * @param percentage
-     * @return
      */
     public static float increaseByPercentage(float originalValue, float percentage) {
         float result = (originalValue / 100) * percentage;
         return result;
+    }
+
+    public static float calculatePercentage(final float input, final float max) {
+        return input * 100.0f / max;
+    }
+
+    public static float calculateper(final float input) {
+        final int max = 20;
+        return input * 100.0f / max;
     }
 }
