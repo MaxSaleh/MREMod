@@ -65,10 +65,13 @@ public class MiningAbilities {
                                 5.0F, 5.0F);
                     }
 
-                    RenderUtil.drawRectWithOutline(poseStack, width - 185,  height - 250, 100, 20, 1426063360, 587202559, 1);
-                    RenderUtil.drawRectangle(poseStack, 10,  10, 5, 5, 1006063360);
+                    PoseStack rectangle = poseStack;
+                    rectangle.pushPose();
+                    rectangle.translate(5D, 60D, 0D);
+                    RenderUtil.drawRectangle(rectangle, Math.round(ModUtil.calculatePercentage(BlockBreakAmountPacket.amount, 200)),  8, 2, 2, 1006063360);
+                    RenderUtil.drawRectWithOutline(rectangle, 100,  10, 0, 0, 1426063360, 587202559, 1);
+                    rectangle.popPose();
 
-                    // givenWidth, givenHeight,
                 }
             }
         }

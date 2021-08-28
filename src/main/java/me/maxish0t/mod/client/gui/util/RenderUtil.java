@@ -49,7 +49,7 @@ public class RenderUtil {
      */
     public static void drawRectWithOutline(PoseStack poseStack, int givenPosX, int givenPosY, int givenWidth, int givenHeight, int givenColor, int givenOutlineColor, int outlineThickness) {
         poseStack.pushPose();
-        drawRectangle(poseStack, givenPosX - outlineThickness, givenPosY - outlineThickness, givenWidth + outlineThickness * 2, givenHeight + outlineThickness * 2, givenOutlineColor);
+        //drawRectangle(poseStack, givenPosX - outlineThickness, givenPosY - outlineThickness, givenWidth + outlineThickness * 2, givenHeight + outlineThickness * 2, givenOutlineColor);
         drawRectangle(poseStack, givenPosX, givenPosY, givenWidth, givenHeight, givenColor);
         poseStack.popPose();
     }
