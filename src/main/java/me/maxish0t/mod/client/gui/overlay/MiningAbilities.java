@@ -49,7 +49,10 @@ public class MiningAbilities {
                                 32, 32, 32, 32);
 
                         // Super Breaker Ability
-                        OverlayAbilitiesUtil.renderSuperBreakerBox("Super Breaker", "Allows for faster ore mining on any ore.", "super_breaker", poseStack, 5D, 50D, false);
+                        OverlayAbilitiesUtil.renderSuperBreakerBox("Super Breaker", "super_breaker", poseStack, 5D, 50D);
+
+                        // Double Ores Ability
+                        OverlayAbilitiesUtil.renderDoubleOresBox("Double Ores", "double_ores", poseStack, 5D, 140D);
 
                     } else {
                         RenderUtil.drawText(poseStack, ChatFormatting.RED + "Hold V To Open Abilities Menu For Item",
