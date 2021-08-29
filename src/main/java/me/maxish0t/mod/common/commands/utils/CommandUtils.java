@@ -10,7 +10,7 @@ public class CommandUtils {
         StringFunctions.sendMessage(source, "Commands Usage:", ChatFormatting.BLUE, true);
         StringFunctions.sendMessage(source, " /mre resetall", ChatFormatting.DARK_GREEN);
         StringFunctions.sendMessage(source, "  Resets all your player stats.", ChatFormatting.DARK_GRAY);
-        StringFunctions.sendMessage(source, " /mre setlevel <content> <level>", ChatFormatting.DARK_GREEN);
+        StringFunctions.sendMessage(source, " /mre setlevel <content> <amount>", ChatFormatting.DARK_GREEN);
         StringFunctions.sendMessage(source, "  Sets a certain content to a certain level.", ChatFormatting.DARK_GRAY);
     }
 }

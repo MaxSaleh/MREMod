@@ -86,7 +86,7 @@ public class MiningEvents {
                 player.getOffhandItem().getItem() instanceof PickaxeItem) {
             if (blocks instanceof OreBlock || blocks instanceof RedStoneOreBlock) {
                 for (int i = 0; i < blockRewardNumbers.size(); i++) {
-                    int amount = persistedData.getInt("block_break_data") - 1;
+                    int amount = persistedData.getInt("block_break_data") + 1;
                     int breakSpeedPercentage = persistedData.getInt("block_mining_speed");
 
                     if (amount == blockRewardNumbers.get(i)) {
