@@ -42,7 +42,7 @@ public class SetLevelCommand {
                 CompoundTag entityData = player.getPersistentData();
                 CompoundTag persistedData = entityData.getCompound(Player.PERSISTED_NBT_TAG);
                 entityData.put(Player.PERSISTED_NBT_TAG, persistedData);
-                
+
                 persistedData.putInt("block_break_data", 1);
             }
         }
