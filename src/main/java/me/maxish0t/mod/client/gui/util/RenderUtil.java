@@ -21,6 +21,17 @@ public class RenderUtil {
     }
 
     /**
+     * Renders a scaled text.
+     */
+    public static void drawTextScaled(PoseStack poseStack, String text, float xPos, float yPos, float givenScale) {
+        Minecraft minecraft = Minecraft.getInstance();
+        poseStack.pushPose();
+        poseStack.scale(givenScale, givenScale, givenScale);
+        minecraft.font.draw(poseStack, text, xPos, yPos, 0xffffff);
+        poseStack.popPose();
+    }
+
+    /**
      * Renders a texture.
      */
     public static void drawTexture(PoseStack poseStack, ResourceLocation image, int x, int y, int z, int width, int height, float srcX, float srcY, float srcWidth, float srcHeight, float textureWidth, float textureHeight) {
@@ -49,7 +60,7 @@ public class RenderUtil {
      */
     public static void drawRectWithOutline(PoseStack poseStack, int givenPosX, int givenPosY, int givenWidth, int givenHeight, int givenColor, int givenOutlineColor, int outlineThickness) {
         poseStack.pushPose();
-        //drawRectangle(poseStack, givenPosX - outlineThickness, givenPosY - outlineThickness, givenWidth + outlineThickness * 2, givenHeight + outlineThickness * 2, givenOutlineColor);
+        drawRectangle(poseStack, givenPosX - outlineThickness - 1, givenPosY - outlineThickness - 1, givenWidth + outlineThickness * 2, givenHeight + outlineThickness * 2, givenOutlineColor);
         drawRectangle(poseStack, givenPosX, givenPosY, givenWidth, givenHeight, givenColor);
         poseStack.popPose();
     }

@@ -5,6 +5,7 @@ import me.maxish0t.mod.server.packets.SendToastPacket;
 import me.maxish0t.mod.server.packets.mining.BlockBreakAmountPacket;
 import me.maxish0t.mod.server.packets.mining.DoubleDropsPacket;
 import me.maxish0t.mod.server.packets.mining.PickaxeSpeedPacket;
+import me.maxish0t.mod.server.packets.mining.SuperBreakerNeededPacket;
 import me.maxish0t.mod.utilities.ModUtil;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
@@ -85,10 +86,13 @@ public class MiningEvents {
                 player.getOffhandItem().getItem() instanceof PickaxeItem) {
             if (blocks instanceof OreBlock || blocks instanceof RedStoneOreBlock) {
                 for (int i = 0; i < blockRewardNumbers.size(); i++) {
-                    int amount = persistedData.getInt("block_break_data");
+                    int amount = persistedData.getInt("block_break_data") - 1;
                     int breakSpeedPercentage = persistedData.getInt("block_mining_speed");
 
                     if (amount == blockRewardNumbers.get(i)) {
+                        persistedData.putInt("super_breaker_block_break_needed", blockRewardNumbers.get(i));
+                        ModNetwork.CHANNEL.sendToServer(new SuperBreakerNeededPacket(persistedData.getInt("super_breaker_block_break_needed")));
+
                         breakSpeedPercentage = breakSpeedPercentage + 5;
                         persistedData.putInt("block_mining_speed", breakSpeedPercentage);
                         ModNetwork.CHANNEL.sendToServer(new PickaxeSpeedPacket(breakSpeedPercentage));

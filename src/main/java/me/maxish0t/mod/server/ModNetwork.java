@@ -4,6 +4,7 @@ import me.maxish0t.mod.server.packets.SendToastPacket;
 import me.maxish0t.mod.server.packets.mining.BlockBreakAmountPacket;
 import me.maxish0t.mod.server.packets.mining.DoubleDropsPacket;
 import me.maxish0t.mod.server.packets.mining.PickaxeSpeedPacket;
+import me.maxish0t.mod.server.packets.mining.SuperBreakerNeededPacket;
 import me.maxish0t.mod.utilities.ModReference;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.fmllegacy.network.NetworkRegistry;
@@ -49,6 +50,12 @@ public class ModNetwork {
                 SendToastPacket::encode,
                 SendToastPacket::decode,
                 SendToastPacket::handle
+        );
+        CHANNEL.registerMessage(networkId++,
+                SuperBreakerNeededPacket.class,
+                SuperBreakerNeededPacket::encode,
+                SuperBreakerNeededPacket::decode,
+                SuperBreakerNeededPacket::handle
         );
     }
 }

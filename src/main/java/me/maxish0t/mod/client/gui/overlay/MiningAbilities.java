@@ -1,6 +1,7 @@
 package me.maxish0t.mod.client.gui.overlay;
 
 import com.mojang.blaze3d.vertex.PoseStack;
+import me.maxish0t.mod.client.gui.overlay.util.OverlayAbilitiesUtil;
 import me.maxish0t.mod.client.gui.util.RenderUtil;
 import me.maxish0t.mod.client.handler.KeyInputHandler;
 import me.maxish0t.mod.server.packets.mining.BlockBreakAmountPacket;
@@ -39,39 +40,21 @@ public class MiningAbilities {
                 if (player.getMainHandItem().getItem() instanceof PickaxeItem ||
                         player.getOffhandItem().getItem() instanceof PickaxeItem) {
 
-                    if (KeyInputHandler.showMiningOverlay) {
-                        RenderUtil.drawText(poseStack, ChatFormatting.BLUE + "Mining Level: " +
+                    if (!KeyInputHandler.showMiningOverlay) { // TODO to true
+                        RenderUtil.drawText(poseStack, ChatFormatting.BLUE + "Ores Broken: " +
                                 BlockBreakAmountPacket.amount, 40.0F, 5.0F);
 
-                        int blockBreakPercentage = PickaxeSpeedPacket.increasePercentage;
-                        RenderUtil.drawText(poseStack, ChatFormatting.BLUE + "Unlocked Abilities:", 40.0F, 20.0F);
-
-                        if (PickaxeSpeedPacket.increasePercentage != 0) {
-                            RenderUtil.drawText(poseStack, ChatFormatting.RED + "- " +
-                                    ChatFormatting.BLUE + "Mining Speed" + ": " + ChatFormatting.GREEN + "+" +
-                                    ChatFormatting.BLUE + blockBreakPercentage + "%", 40.0F, 30.0F);
-                        }
-
-                        if (DoubleDropsPacket.canDoubleDrop) {
-                            RenderUtil.drawText(poseStack, ChatFormatting.RED + "- " +
-                                    ChatFormatting.BLUE + "25% Double Block Drops", 40.0F, 40.0F);
-                        }
-
-                        ResourceLocation image = new ResourceLocation(ModReference.MODID, "textures/icons/gathering/mining.png");
+                        ResourceLocation image = new ResourceLocation(ModReference.MODID, "textures/icons/gathering/mining/pickaxe.png");
                         RenderUtil.drawTexture(poseStack, image, 5, 5, 0, 32, 32, 32, 32,
                                 32, 32, 32, 32);
+
+                        // Super Breaker Ability
+                        OverlayAbilitiesUtil.renderSuperBreakerBox("Super Breaker", "Allows for faster ore mining on any ore.", "super_breaker", poseStack, 5D, 50D, false);
+
                     } else {
                         RenderUtil.drawText(poseStack, ChatFormatting.RED + "Hold V To Open Abilities Menu For Item",
                                 5.0F, 5.0F);
                     }
-
-                    PoseStack rectangle = poseStack;
-                    rectangle.pushPose();
-                    rectangle.translate(5D, 60D, 0D);
-                    RenderUtil.drawRectangle(rectangle, Math.round(ModUtil.calculatePercentage(BlockBreakAmountPacket.amount, 200)),  8, 2, 2, 1006063360);
-                    RenderUtil.drawRectWithOutline(rectangle, 100,  10, 0, 0, 1426063360, 587202559, 1);
-                    rectangle.popPose();
-
                 }
             }
         }

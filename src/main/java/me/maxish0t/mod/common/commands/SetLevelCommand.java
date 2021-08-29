@@ -9,9 +9,10 @@ import me.maxish0t.mod.utilities.StringFunctions;
 import net.minecraft.ChatFormatting;
 import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.commands.Commands;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.entity.player.Player;
 
-public class ResetDataCommand {
+public class SetLevelCommand {
     public static void register(CommandDispatcher<CommandSourceStack> dispatcher) {
         dispatcher.register(Commands.literal("mre").requires((iCommandSender) -> iCommandSender.hasPermission(2))
                 .executes((command) -> {
@@ -19,14 +20,18 @@ public class ResetDataCommand {
                     CommandUtils.showUsage(source);
                     return 1;
                 })
-        .then(Commands.literal("resetall").executes((command) -> {
-            resetAllData(command);
-            StringFunctions.sendMessage(command.getSource(), "Player Stats has been reset!", ChatFormatting.GREEN);
-            return 1;
-        })));
+                .then(Commands.literal("setlevel").executes((command) -> {
+                    CommandSourceStack source = command.getSource();
+                    CommandUtils.showUsage(source);
+                    return 1;
+                })
+                .then(Commands.literal("mining").executes((command) -> {
+                    setLevel(command);
+                    return 1;
+                }))));
     }
 
-    private static void resetAllData(CommandContext<CommandSourceStack> command) {
+    private static void setLevel(CommandContext<CommandSourceStack> command) {
         CommandSourceStack source = command.getSource();
         Player player;
 
@@ -34,7 +39,11 @@ public class ResetDataCommand {
             player = source.getPlayerOrException();
 
             if (player != null) {
-                PlayerContent.resetAllData(player);
+                CompoundTag entityData = player.getPersistentData();
+                CompoundTag persistedData = entityData.getCompound(Player.PERSISTED_NBT_TAG);
+                entityData.put(Player.PERSISTED_NBT_TAG, persistedData);
+                
+                persistedData.putInt("block_break_data", 1);
             }
         }
         catch (CommandSyntaxException ex) {
