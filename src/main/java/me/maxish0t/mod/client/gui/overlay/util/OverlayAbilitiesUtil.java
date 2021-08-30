@@ -45,7 +45,7 @@ public class OverlayAbilitiesUtil {
         PoseStack statsBar = poseStack;
         statsBar.pushPose();
         statsBar.translate(posX, posY + 50, 0D);
-        RenderUtil.drawRectangle(statsBar, Math.round(ModUtil.calculatePercentage(BlockBreakAmountPacket.amount, amountNeededSuperBreaker)),  8, 2, 2, 1006063360);
+        RenderUtil.drawRectangle(statsBar, Math.round(ModUtil.calculatePercentageFloat(BlockBreakAmountPacket.amount, amountNeededSuperBreaker)),  8, 2, 2, 1006063360);
         RenderUtil.drawRectWithOutline(statsBar, 100,  10, 0, 0, 1426063360, 587202559, 1);
         statsBar.popPose();
 
@@ -54,7 +54,6 @@ public class OverlayAbilitiesUtil {
 
     public static void renderDoubleOresBox(String abilityName, String abilityIconName, PoseStack poseStack, double posX, double posY) {
         ResourceLocation resourceLocation = new ResourceLocation(ModReference.MODID, "textures/icons/gathering/mining/" + abilityIconName + ".png");
-        int blockBreakPercentage = PickaxeSpeedPacket.increasePercentage;
         int oresLeft = 500 - BlockBreakAmountPacket.amount;
         int rectWidth = 100, rectHeight = 60;
 
@@ -72,23 +71,20 @@ public class OverlayAbilitiesUtil {
 
         RenderUtil.drawTexture(poseStack, resourceLocation, (int)posX + 3, (int)posY + 3, 0, 27, 27, 32, 32, 32, 32, 32, 32);
 
-        RenderUtil.drawTextScaled(poseStack, ChatFormatting.RED + abilityName, (float)posX + 60, (float)posY + 27, 0.7F);
+        RenderUtil.drawTextScaled(poseStack, ChatFormatting.RED + abilityName, (float)posX + 67, (float)posY + 65, 0.7F);
 
         if (BlockBreakAmountPacket.amount >= 500) {
-            RenderUtil.drawTextScaled(poseStack, ModUtil.renderColoredText("&1&lUNLOCKED"), (float)posX + 55, (float)posY + 30, 0.8F);
+            RenderUtil.drawTextScaled(poseStack, ModUtil.renderColoredText("&1&lUNLOCKED"), (float)posX + 55, (float)posY + 55, 0.8F);
         } else {
-            RenderUtil.drawTextScaled(poseStack, ModUtil.renderColoredText("&t&lLOCKED"), (float)posX + 63, (float)posY + 30, 0.8F);
+            RenderUtil.drawTextScaled(poseStack, ModUtil.renderColoredText("&t&lLOCKED"), (float)posX + 63, (float)posY + 55, 0.8F);
+            RenderUtil.drawTextScaled(poseStack, ChatFormatting.YELLOW + "" + oresLeft + " " + ChatFormatting.UNDERLINE + "ores left", (float)posX + 30, (float)posY + 87, 0.8F);
         }
-
-        //RenderUtil.drawTextScaled(poseStack, ChatFormatting.BLUE + "Mining Speed" + " " + ChatFormatting.GREEN + "+" + ChatFormatting.BLUE + blockBreakPercentage + "%", (float)posX + 51, (float)posY + 60, 0.7F);
 
         PoseStack statsBar = poseStack;
         statsBar.pushPose();
         statsBar.translate(posX, posY + 50, 0D);
-        RenderUtil.drawRectangle(statsBar, Math.round(ModUtil.calculatePercentage(BlockBreakAmountPacket.amount, 500)),  8, 2, 2, 1006063360);
+        RenderUtil.drawRectangle(statsBar, Math.round(ModUtil.calculatePercentageFloat(BlockBreakAmountPacket.amount, 500)),  8, 2, 2, 1006063360);
         RenderUtil.drawRectWithOutline(statsBar, 100,  10, 0, 0, 1426063360, 587202559, 1);
         statsBar.popPose();
-
-        RenderUtil.drawTextScaled(poseStack, ChatFormatting.YELLOW + "" + oresLeft + " " + ChatFormatting.UNDERLINE + "ores left", (float)posX + 17, (float)posY + 64, 0.8F);
     }
 }

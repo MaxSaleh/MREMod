@@ -43,12 +43,11 @@ public class ModUtil {
         return result;
     }
 
-    public static float calculatePercentage(final float input, final float max) {
+    public static double calculatePercentageDouble(final double input, final double max) {
         return input * 100.0f / max;
     }
 
-    public static float calculateper(final float input) {
-        final int max = 20;
+    public static float calculatePercentageFloat(final float input, final float max) {
         return input * 100.0f / max;
     }
 }

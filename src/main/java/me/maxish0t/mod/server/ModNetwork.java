@@ -1,6 +1,7 @@
 package me.maxish0t.mod.server;
 
 import me.maxish0t.mod.server.packets.SendToastPacket;
+import me.maxish0t.mod.server.packets.UpdateLevelPacket;
 import me.maxish0t.mod.server.packets.mining.BlockBreakAmountPacket;
 import me.maxish0t.mod.server.packets.mining.DoubleDropsPacket;
 import me.maxish0t.mod.server.packets.mining.PickaxeSpeedPacket;
@@ -56,6 +57,12 @@ public class ModNetwork {
                 SuperBreakerNeededPacket::encode,
                 SuperBreakerNeededPacket::decode,
                 SuperBreakerNeededPacket::handle
+        );
+        CHANNEL.registerMessage(networkId++,
+                UpdateLevelPacket.class,
+                UpdateLevelPacket::encode,
+                UpdateLevelPacket::decode,
+                UpdateLevelPacket::handle
         );
     }
 }
