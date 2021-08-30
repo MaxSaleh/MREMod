@@ -6,14 +6,10 @@ import com.mojang.brigadier.context.CommandContext;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import me.maxish0t.mod.common.capability.level.CapabilityLevelHandler;
 import me.maxish0t.mod.common.commands.utils.CommandUtils;
-import me.maxish0t.mod.common.content.PlayerContent;
-import me.maxish0t.mod.server.ModNetwork;
-import me.maxish0t.mod.server.packets.mining.BlockBreakAmountPacket;
 import me.maxish0t.mod.utilities.StringFunctions;
 import net.minecraft.ChatFormatting;
 import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.commands.Commands;
-import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.entity.player.Player;
 
 public class SetLevelCommand {

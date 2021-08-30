@@ -4,7 +4,6 @@ import com.mojang.blaze3d.vertex.PoseStack;
 import me.maxish0t.mod.client.gui.util.RenderUtil;
 import me.maxish0t.mod.common.content.gathering.mining.MiningAbilitiesEvents;
 import me.maxish0t.mod.server.packets.UpdateLevelPacket;
-import me.maxish0t.mod.server.packets.mining.BlockBreakAmountPacket;
 import me.maxish0t.mod.utilities.ModReference;
 import me.maxish0t.mod.utilities.ModUtil;
 import net.minecraft.ChatFormatting;

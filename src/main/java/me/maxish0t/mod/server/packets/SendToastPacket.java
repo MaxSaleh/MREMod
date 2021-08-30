@@ -1,7 +1,6 @@
 package me.maxish0t.mod.server.packets;
 
 import me.maxish0t.mod.client.gui.components.toasts.MREToast;
-import me.maxish0t.mod.server.packets.mining.PickaxeSpeedPacket;
 import me.maxish0t.mod.utilities.ModUtil;
 import net.minecraft.client.Minecraft;
 import net.minecraft.network.FriendlyByteBuf;
@@ -40,17 +39,7 @@ public class SendToastPacket {
 
                 // Mining Level Ability Unlocked
                 if (SendToastPacket.id == 1) {
-                    MREToast mreToast = new MREToast(ModUtil.renderColoredText("&5&lABILITY UNLOCKED!"), ModUtil.renderColoredText("&bMining Speed &1+&b5%"));
-
-                    if (minecraft.getToasts().getToast(MREToast.class, mreToast.getToken()) == null) {
-                        minecraft.getToasts().addToast(mreToast);
-                    }
-                }
-
-                // Mining Level Ability Level Hit
-                if (SendToastPacket.id == 2) {
-                    MREToast mreToast = new MREToast(ModUtil.renderColoredText("&5&lPICKAXE SPEED"),
-                            ModUtil.renderColoredText("&bIncreased to &1+&b" + PickaxeSpeedPacket.increasePercentage + "%"));
+                    MREToast mreToast = new MREToast(ModUtil.renderColoredText("&5&lABILITY UNLOCKED!"), ModUtil.renderColoredText("&bMining Speed &1+&b20%"));
 
                     if (minecraft.getToasts().getToast(MREToast.class, mreToast.getToken()) == null) {
                         minecraft.getToasts().addToast(mreToast);

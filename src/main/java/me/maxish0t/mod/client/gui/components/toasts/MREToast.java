@@ -2,9 +2,6 @@ package me.maxish0t.mod.client.gui.components.toasts;
 
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
-import me.maxish0t.mod.server.packets.mining.BlockBreakAmountPacket;
-import me.maxish0t.mod.utilities.ModUtil;
-import net.minecraft.ChatFormatting;
 import net.minecraft.client.gui.components.toasts.Toast;
 import net.minecraft.client.gui.components.toasts.ToastComponent;
 import net.minecraft.client.renderer.GameRenderer;

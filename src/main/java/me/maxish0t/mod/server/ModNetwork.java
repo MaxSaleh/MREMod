@@ -20,40 +20,12 @@ public class ModNetwork {
 
     public static void register() {
         int networkId = 0;
-        // Client -> Server
 
-        /**
-         * Mining Packets
-         */
-        CHANNEL.registerMessage(networkId++,
-                BlockBreakAmountPacket.class,
-                BlockBreakAmountPacket::encode,
-                BlockBreakAmountPacket::decode,
-                BlockBreakAmountPacket::handle
-        );
-        CHANNEL.registerMessage(networkId++,
-                DoubleDropsPacket.class,
-                DoubleDropsPacket::encode,
-                DoubleDropsPacket::decode,
-                DoubleDropsPacket::handle
-        );
-        CHANNEL.registerMessage(networkId++,
-                PickaxeSpeedPacket.class,
-                PickaxeSpeedPacket::encode,
-                PickaxeSpeedPacket::decode,
-                PickaxeSpeedPacket::handle
-        );
         CHANNEL.registerMessage(networkId++,
                 SendToastPacket.class,
                 SendToastPacket::encode,
                 SendToastPacket::decode,
                 SendToastPacket::handle
-        );
-        CHANNEL.registerMessage(networkId++,
-                SuperBreakerNeededPacket.class,
-                SuperBreakerNeededPacket::encode,
-                SuperBreakerNeededPacket::decode,
-                SuperBreakerNeededPacket::handle
         );
         CHANNEL.registerMessage(networkId++,
                 UpdateLevelPacket.class,

@@ -79,11 +79,9 @@ public class MiningAbilitiesEvents {
                 ModNetwork.CHANNEL.sendTo(new MiningAbilitiesPacket(1, true), serverPlayer.connection.getConnection(), NetworkDirection.PLAY_TO_CLIENT);
             }
 
-            System.out.println("WORKS!");
-
             if (player.getMainHandItem().getItem() instanceof PickaxeItem ||
                     player.getOffhandItem().getItem() instanceof PickaxeItem) {
-                event.setNewSpeed(originalSpeed + 200F);
+                event.setNewSpeed(ModUtil.increaseByPercentage(originalSpeed, 20F));
             }
         } else {
             event.setNewSpeed(originalSpeed);
