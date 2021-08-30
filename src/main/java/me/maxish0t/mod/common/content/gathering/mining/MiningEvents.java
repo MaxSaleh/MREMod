@@ -17,8 +17,8 @@ public class MiningEvents {
             max = 0.01;
             min = 0.04;
         } else {
-            max = 0.009;
-            min = 0.005;
+            max = 0.1; // 0.009
+            min = 0.1; // 0.005
         }
 
         CapabilityLevelHandler.addLevel(player, (float) (Math.random() * (max - min) + min));

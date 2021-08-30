@@ -28,7 +28,7 @@ public class CapabilityLevelHandler {
     @SubscribeEvent
     public void attachCapabilities(AttachCapabilitiesEvent<Entity> event) {
         if (event.getObject() instanceof Player) {
-            event.addCapability(new ResourceLocation(ModReference.MODID, "mining"), new LevelContainerProvider(new LevelContainer("mining")));
+            event.addCapability(new ResourceLocation(ModReference.MOD_ID, "mining"), new LevelContainerProvider(new LevelContainer("mining")));
         }
     }
 
@@ -78,9 +78,5 @@ public class CapabilityLevelHandler {
             ServerPlayer serverPlayer = (ServerPlayer) player;
             ModNetwork.CHANNEL.sendTo(new UpdateLevelPacket(currentLevel), serverPlayer.connection.getConnection(), NetworkDirection.PLAY_TO_CLIENT);
         }
-    }
-
-    public static float getLevelClient() {
-        return UpdateLevelPacket.level;
     }
 }

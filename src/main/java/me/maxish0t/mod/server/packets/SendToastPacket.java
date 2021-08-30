@@ -40,8 +40,7 @@ public class SendToastPacket {
 
                 // Mining Level Ability Unlocked
                 if (SendToastPacket.id == 1) {
-                    MREToast mreToast = new MREToast(ModUtil.renderColoredText("&5&lABILITY UNLOCKED!"),
-                            ModUtil.renderColoredText("&bMining Speed &1+&b5%"));
+                    MREToast mreToast = new MREToast(ModUtil.renderColoredText("&5&lABILITY UNLOCKED!"), ModUtil.renderColoredText("&bMining Speed &1+&b5%"));
 
                     if (minecraft.getToasts().getToast(MREToast.class, mreToast.getToken()) == null) {
                         minecraft.getToasts().addToast(mreToast);

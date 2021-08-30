@@ -4,14 +4,8 @@ import com.mojang.blaze3d.vertex.PoseStack;
 import me.maxish0t.mod.client.gui.overlay.util.OverlayAbilitiesUtil;
 import me.maxish0t.mod.client.gui.util.RenderUtil;
 import me.maxish0t.mod.client.handler.KeyInputHandler;
-import me.maxish0t.mod.common.capability.level.CapabilityLevelHandler;
-import me.maxish0t.mod.common.capability.level.ILevel;
 import me.maxish0t.mod.server.packets.UpdateLevelPacket;
-import me.maxish0t.mod.server.packets.mining.BlockBreakAmountPacket;
-import me.maxish0t.mod.server.packets.mining.DoubleDropsPacket;
-import me.maxish0t.mod.server.packets.mining.PickaxeSpeedPacket;
 import me.maxish0t.mod.utilities.ModReference;
-import me.maxish0t.mod.utilities.ModUtil;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screens.DeathScreen;
@@ -20,7 +14,6 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.PickaxeItem;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
-import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 
 public class MiningOverlay {
@@ -45,10 +38,11 @@ public class MiningOverlay {
                         player.getOffhandItem().getItem() instanceof PickaxeItem) {
 
                     if (!KeyInputHandler.showMiningOverlay) { // TODO to true
-                        RenderUtil.drawText(poseStack, ChatFormatting.BLUE + "Mining Level: " +
-                                CapabilityLevelHandler.getLevelClient(), 40.0F, 5.0F);
 
-                        ResourceLocation image = new ResourceLocation(ModReference.MODID, "textures/icons/gathering/mining/pickaxe.png");
+                        RenderUtil.drawText(poseStack, ChatFormatting.BLUE + "Mining Level: " +
+                                UpdateLevelPacket.level, 40.0F, 5.0F);
+
+                        ResourceLocation image = new ResourceLocation(ModReference.MOD_ID, "textures/icons/gathering/mining/pickaxe.png");
                         RenderUtil.drawTexture(poseStack, image, 5, 5, 0, 32, 32, 32, 32,
                                 32, 32, 32, 32);
 

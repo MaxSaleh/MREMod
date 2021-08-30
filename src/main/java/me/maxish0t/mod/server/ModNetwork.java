@@ -2,10 +2,7 @@ package me.maxish0t.mod.server;
 
 import me.maxish0t.mod.server.packets.SendToastPacket;
 import me.maxish0t.mod.server.packets.UpdateLevelPacket;
-import me.maxish0t.mod.server.packets.mining.BlockBreakAmountPacket;
-import me.maxish0t.mod.server.packets.mining.DoubleDropsPacket;
-import me.maxish0t.mod.server.packets.mining.PickaxeSpeedPacket;
-import me.maxish0t.mod.server.packets.mining.SuperBreakerNeededPacket;
+import me.maxish0t.mod.server.packets.mining.*;
 import me.maxish0t.mod.utilities.ModReference;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.fmllegacy.network.NetworkRegistry;
@@ -15,7 +12,7 @@ public class ModNetwork {
 
     private static final String NETWORK_PROTOCOL_VERSION = "1";
     public static final SimpleChannel CHANNEL = NetworkRegistry.newSimpleChannel(
-            new ResourceLocation(ModReference.MODID, "main"),
+            new ResourceLocation(ModReference.MOD_ID, "main"),
             () -> NETWORK_PROTOCOL_VERSION,
             NETWORK_PROTOCOL_VERSION::equals,
             NETWORK_PROTOCOL_VERSION::equals
@@ -63,6 +60,12 @@ public class ModNetwork {
                 UpdateLevelPacket::encode,
                 UpdateLevelPacket::decode,
                 UpdateLevelPacket::handle
+        );
+        CHANNEL.registerMessage(networkId++,
+                MiningAbilitiesPacket.class,
+                MiningAbilitiesPacket::encode,
+                MiningAbilitiesPacket::decode,
+                MiningAbilitiesPacket::handle
         );
     }
 }

@@ -4,6 +4,7 @@ import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.arguments.IntegerArgumentType;
 import com.mojang.brigadier.context.CommandContext;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
+import me.maxish0t.mod.common.capability.level.CapabilityLevelHandler;
 import me.maxish0t.mod.common.commands.utils.CommandUtils;
 import me.maxish0t.mod.common.content.PlayerContent;
 import me.maxish0t.mod.server.ModNetwork;
@@ -39,7 +40,7 @@ public class SetLevelCommand {
                                 })))));
     }
 
-    private static void setLevel(CommandContext<CommandSourceStack> command, int count) {
+    private static void setLevel(CommandContext<CommandSourceStack> command, int amount) {
         CommandSourceStack source = command.getSource();
         Player player;
 
@@ -47,12 +48,7 @@ public class SetLevelCommand {
             player = source.getPlayerOrException();
 
             if (player != null) {
-                CompoundTag entityData = player.getPersistentData();
-                CompoundTag persistedData = entityData.getCompound(Player.PERSISTED_NBT_TAG);
-                entityData.put(Player.PERSISTED_NBT_TAG, persistedData);
-
-                persistedData.putInt("block_break_data", count);
-                ModNetwork.CHANNEL.sendToServer(new BlockBreakAmountPacket(persistedData.getInt("block_break_data")));
+                CapabilityLevelHandler.setLevel(player, amount);
             }
         }
         catch (CommandSyntaxException ex) {

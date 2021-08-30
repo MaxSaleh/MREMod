@@ -35,9 +35,6 @@ public class ModUtil {
         return text;
     }
 
-    /**
-     * Increase a number by a percentage.
-     */
     public static float increaseByPercentage(float originalValue, float percentage) {
         float result = (originalValue / 100) * percentage;
         return result;
@@ -49,5 +46,9 @@ public class ModUtil {
 
     public static float calculatePercentageFloat(final float input, final float max) {
         return input * 100.0f / max;
+    }
+
+    public static Boolean percentChance(double chance) {
+        return Math.random() <= chance;
     }
 }

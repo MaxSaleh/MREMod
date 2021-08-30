@@ -9,6 +9,6 @@ public class KeyEntry {
 
     public KeyEntry(KeyType keyType) {
         this.keyType = keyType;
-        this.keyBinding = new KeyMapping(keyType.displayName, keyType.keyCode, ModReference.MODNAME);
+        this.keyBinding = new KeyMapping(keyType.displayName, keyType.keyCode, ModReference.MOD_NAME);
     }
 }
