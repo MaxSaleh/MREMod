@@ -80,7 +80,7 @@ public class OverlayAbilitiesUtil {
             RenderUtil.drawTextScaled(poseStack, ChatFormatting.YELLOW + "" + (int)UpdateLevelPacket.level + ChatFormatting.WHITE + "/" + ChatFormatting.YELLOW + (int) ClientMiningEvents.DOUBLE_ORES_AMOUNT + " " + ChatFormatting.UNDERLINE + "level needed", (float)posX + 20, (float)posY + 87, 0.8F);
         }
 
-        RenderUtil.drawTextScaled(poseStack, ChatFormatting.BLUE + "65% chance double ore drops", (float)posX + 12, (float)posY + 150, 0.6F);
+        RenderUtil.drawTextScaled(poseStack, ChatFormatting.BLUE + "15% chance double ore drops", (float)posX + 12, (float)posY + 150, 0.6F);
 
         PoseStack statsBar = poseStack;
         statsBar.pushPose();

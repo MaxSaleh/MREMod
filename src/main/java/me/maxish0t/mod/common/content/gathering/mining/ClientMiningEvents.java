@@ -9,7 +9,9 @@ import net.minecraft.client.Minecraft;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.LogicalSide;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fmllegacy.network.NetworkDirection;
 
 @Mod.EventBusSubscriber(modid = "mre", value = Dist.CLIENT)
 public class ClientMiningEvents {
@@ -24,37 +26,39 @@ public class ClientMiningEvents {
      * Ability checks
      */
     @SubscribeEvent
-    public static void onPlayerEvent(TickEvent.PlayerTickEvent event) { // TODO create a packet for the booleans its going to cause server crashes
-        final Minecraft minecraft = Minecraft.getInstance();
-        float miningLevel = UpdateLevelPacket.level;
+    public static void onPlayerEvent(TickEvent.PlayerTickEvent event) { // TODO do this on the server and have a packet send from: server to client
+        if (event.side == LogicalSide.CLIENT) {
+            Minecraft minecraft = Minecraft.getInstance();
+            float miningLevel = UpdateLevelPacket.level;
 
-        MREToast miningSpeedToast = new MREToast(ModUtil.renderColoredText("&5&lABILITY UNLOCKED!"), ModUtil.renderColoredText("&bMining Speed &1+&b5%"));
-        MREToast doubleOresToast = new MREToast(ModUtil.renderColoredText("&5&lABILITY UNLOCKED!"), ModUtil.renderColoredText("&165% &bof ore doubling"));
+            MREToast miningSpeedToast = new MREToast(ModUtil.renderColoredText("&5&lABILITY UNLOCKED!"), ModUtil.renderColoredText("&bMining Speed &1+&b5%"));
+            MREToast doubleOresToast = new MREToast(ModUtil.renderColoredText("&5&lABILITY UNLOCKED!"), ModUtil.renderColoredText("&115% &bof ore doubling"));
 
-        // Super Breaker Ability
-        if (miningLevel >= SUPER_BREAKER_AMOUNT) {
-            if (minecraft.getToasts().getToast(MREToast.class, miningSpeedToast.getToken()) == null && !unlockedSuperBreaker) {
-                minecraft.getToasts().addToast(miningSpeedToast);
+            // Super Breaker Ability
+            if (miningLevel >= SUPER_BREAKER_AMOUNT) {
+                if (minecraft.getToasts().getToast(MREToast.class, miningSpeedToast.getToken()) == null && !unlockedSuperBreaker) {
+                    minecraft.getToasts().addToast(miningSpeedToast);
+                }
+
+                ModNetwork.CHANNEL.sendTo(new MiningAbilitiesPacket(1, true), minecraft.getConnection().getConnection(), NetworkDirection.PLAY_TO_SERVER);
+                unlockedSuperBreaker = true;
+            } else {
+                ModNetwork.CHANNEL.sendTo(new MiningAbilitiesPacket(1, false), minecraft.getConnection().getConnection(), NetworkDirection.PLAY_TO_SERVER);
+                unlockedSuperBreaker = false;
             }
 
-            unlockedSuperBreaker = true;
-            ModNetwork.CHANNEL.sendToServer(new MiningAbilitiesPacket(1, true));
-        } else {
-            unlockedSuperBreaker = false;
-            ModNetwork.CHANNEL.sendToServer(new MiningAbilitiesPacket(1, false));
-        }
+            // Double Ores Ability
+            if (miningLevel >= DOUBLE_ORES_AMOUNT) {
+                if (minecraft.getToasts().getToast(MREToast.class, doubleOresToast.getToken()) == null && !unlockedDoubleOres) {
+                    minecraft.getToasts().addToast(doubleOresToast);
+                }
 
-        // Double Ores Ability
-        if (miningLevel >= DOUBLE_ORES_AMOUNT) {
-            if (minecraft.getToasts().getToast(MREToast.class, doubleOresToast.getToken()) == null && !unlockedDoubleOres) {
-                minecraft.getToasts().addToast(doubleOresToast);
+                ModNetwork.CHANNEL.sendTo(new MiningAbilitiesPacket(2, true), minecraft.getConnection().getConnection(), NetworkDirection.PLAY_TO_SERVER);
+                unlockedDoubleOres = true;
+            } else {
+                ModNetwork.CHANNEL.sendTo(new MiningAbilitiesPacket(2, false), minecraft.getConnection().getConnection(), NetworkDirection.PLAY_TO_SERVER);
+                unlockedDoubleOres = false;
             }
-
-            unlockedDoubleOres = true;
-            ModNetwork.CHANNEL.sendToServer(new MiningAbilitiesPacket(2, true));
-        } else {
-            unlockedDoubleOres = false;
-            ModNetwork.CHANNEL.sendToServer(new MiningAbilitiesPacket(2, false));
         }
     }
 }

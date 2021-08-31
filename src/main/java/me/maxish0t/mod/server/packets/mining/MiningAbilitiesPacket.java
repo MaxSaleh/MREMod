@@ -2,6 +2,7 @@ package me.maxish0t.mod.server.packets.mining;
 
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraftforge.fmllegacy.network.NetworkDirection;
 import net.minecraftforge.fmllegacy.network.NetworkEvent;
 
 import java.util.function.Supplier;
@@ -18,6 +19,20 @@ public class MiningAbilitiesPacket
     public MiningAbilitiesPacket(int idAbility, boolean unlocked) {
         this.idAbility = idAbility;
         this.unlocked = unlocked;
+
+        if (idAbility == 1) {
+            if (unlocked) {
+                unlockedSuperBreaker = true;
+            } else {
+                unlockedSuperBreaker = false;
+            }
+        } else if (idAbility == 2) {
+            if (unlocked) {
+                unlockedDoubleOres = true;
+            } else {
+                unlockedDoubleOres = false;
+            }
+        }
     }
 
     public static void encode(final MiningAbilitiesPacket msg, final FriendlyByteBuf packetBuffer) {
@@ -42,23 +57,7 @@ public class MiningAbilitiesPacket
         final NetworkEvent.Context context = contextSupplier.get();
 
         context.enqueueWork(() -> {
-            final ServerPlayer player = context.getSender();
 
-            if (player != null) {
-                if (idAbility == 1) {
-                    if (unlocked) {
-                        unlockedSuperBreaker = true;
-                    } else {
-                        unlockedSuperBreaker = false;
-                    }
-                } else if (idAbility == 2) {
-                    if (unlocked) {
-                        unlockedDoubleOres = true;
-                    } else {
-                        unlockedDoubleOres = false;
-                    }
-                }
-            }
         });
         context.setPacketHandled(true);
     }

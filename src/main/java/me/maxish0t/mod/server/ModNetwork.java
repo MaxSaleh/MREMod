@@ -42,7 +42,8 @@ public class ModNetwork {
                 MiningAbilitiesPacket.class,
                 MiningAbilitiesPacket::encode,
                 MiningAbilitiesPacket::decode,
-                MiningAbilitiesPacket::handle
+                MiningAbilitiesPacket::handle,
+                Optional.of(NetworkDirection.PLAY_TO_SERVER)
         );
     }
 }
