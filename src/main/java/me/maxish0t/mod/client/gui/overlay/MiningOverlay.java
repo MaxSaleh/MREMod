@@ -13,13 +13,16 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.PickaxeItem;
+import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.common.Mod;
 
+@Mod.EventBusSubscriber(modid = "mre", value = Dist.CLIENT)
 public class MiningOverlay {
 
     @SubscribeEvent
-    public void renderOverlay(RenderGameOverlayEvent.Post event) {
+    public static void renderOverlay(RenderGameOverlayEvent.Post event) {
         Minecraft minecraft = Minecraft.getInstance();
         Player player = (Player) minecraft.getCameraEntity();
         PoseStack poseStack = event.getMatrixStack();

@@ -2,19 +2,23 @@ package me.maxish0t.mod.client.handler;
 
 import me.maxish0t.mod.client.input.KeyEntry;
 import me.maxish0t.mod.client.input.KeyType;
+import me.maxish0t.mod.utilities.ModReference;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.network.chat.TextComponent;
 import net.minecraft.world.item.PickaxeItem;
+import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.InputEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fmlclient.registry.ClientRegistry;
 
 import java.util.ArrayList;
 
+@Mod.EventBusSubscriber(modid = "mre", value = Dist.CLIENT)
 public class KeyInputHandler {
-    private ArrayList<KeyEntry> keyEntries;
+    private static ArrayList<KeyEntry> keyEntries;
 
     public static boolean showMiningOverlay = false;
 
@@ -28,7 +32,7 @@ public class KeyInputHandler {
     }
 
     @SubscribeEvent
-    public void onKeyInput(InputEvent.KeyInputEvent event) {
+    public static void onKeyInput(InputEvent.KeyInputEvent event) {
         for (KeyEntry keyEntry : keyEntries) {
             if (keyEntry.keyBinding.isDown()) {
                 handleKeyInput(keyEntry.keyType);
@@ -39,7 +43,7 @@ public class KeyInputHandler {
         }
     }
 
-    private void handleKeyInput(KeyType keyType) {
+    private static void handleKeyInput(KeyType keyType) {
         Minecraft minecraft = Minecraft.getInstance();
 
         if (minecraft.player != null) {

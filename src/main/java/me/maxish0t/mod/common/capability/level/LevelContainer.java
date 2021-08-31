@@ -23,7 +23,7 @@ public class LevelContainer implements ILevel {
 
     @Override
     public void setLevel(float value) {
-        this.level = Math.max(0, Math.min(value, this.getMaxLevel()));
+        this.level = value;
     }
 
     @Override
@@ -33,7 +33,7 @@ public class LevelContainer implements ILevel {
 
     @Override
     public float getMaxLevel() {
-        return 100;
+        return 200;
     }
 
     public CompoundTag serializeNBT() {

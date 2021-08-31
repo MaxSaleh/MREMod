@@ -5,8 +5,11 @@ import me.maxish0t.mod.server.packets.UpdateLevelPacket;
 import me.maxish0t.mod.server.packets.mining.*;
 import me.maxish0t.mod.utilities.ModReference;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraftforge.fmllegacy.network.NetworkDirection;
 import net.minecraftforge.fmllegacy.network.NetworkRegistry;
 import net.minecraftforge.fmllegacy.network.simple.SimpleChannel;
+
+import java.util.Optional;
 
 public class ModNetwork {
 
@@ -21,12 +24,14 @@ public class ModNetwork {
     public static void register() {
         int networkId = 0;
 
+        /**
         CHANNEL.registerMessage(networkId++,
                 SendToastPacket.class,
                 SendToastPacket::encode,
                 SendToastPacket::decode,
-                SendToastPacket::handle
-        );
+                SendToastPacket::handle,
+                Optional.of(NetworkDirection.PLAY_TO_CLIENT)
+        );**/
         CHANNEL.registerMessage(networkId++,
                 UpdateLevelPacket.class,
                 UpdateLevelPacket::encode,
