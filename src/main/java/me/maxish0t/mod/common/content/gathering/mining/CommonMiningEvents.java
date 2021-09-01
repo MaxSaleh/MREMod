@@ -1,5 +1,6 @@
 package me.maxish0t.mod.common.content.gathering.mining;
 
+import me.maxish0t.mod.common.item.MPickaxeItem;
 import me.maxish0t.mod.server.packets.mining.MiningAbilitiesPacket;
 import me.maxish0t.mod.utilities.ModUtil;
 import net.minecraft.core.BlockPos;
@@ -9,7 +10,6 @@ import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.PickaxeItem;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.event.world.BlockEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -25,9 +25,9 @@ public class CommonMiningEvents {
         float originalSpeed = event.getOriginalSpeed();
 
         if (MiningAbilitiesPacket.unlockedSuperBreaker) {
-            if (player.getMainHandItem().getItem() instanceof PickaxeItem ||
-                    player.getOffhandItem().getItem() instanceof PickaxeItem) {
-                event.setNewSpeed(ModUtil.increaseByPercentage(originalSpeed, 20F));
+            if (player.getMainHandItem().getItem() instanceof MPickaxeItem ||
+                    player.getOffhandItem().getItem() instanceof MPickaxeItem) {
+                event.setNewSpeed(originalSpeed + ModUtil.increaseByPercentage(originalSpeed, 20F));
             }
         } else {
             event.setNewSpeed(originalSpeed);

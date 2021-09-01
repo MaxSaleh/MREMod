@@ -30,7 +30,7 @@ public class MPickaxeItem extends PickaxeItem {
             Player player = (Player) entity;
             isBlastMiningOnCoolDown = ServerTickHandler.playerBlastMiningCoolDown.containsKey(player.getUUID());
 
-            if (ServerTickHandler.playerBlastMiningCoolDown.get(player.getUUID()) != null) {
+            if (isBlastMiningOnCoolDown) {
                 blastMiningCoolDown = ServerTickHandler.playerBlastMiningCoolDown.get(player.getUUID());
             }
         }

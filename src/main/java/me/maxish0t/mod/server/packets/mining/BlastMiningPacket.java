@@ -2,6 +2,7 @@ package me.maxish0t.mod.server.packets.mining;
 
 import me.maxish0t.mod.common.entity.projectile.ThrownTnt;
 import me.maxish0t.mod.common.handlers.ServerTickHandler;
+import me.maxish0t.mod.common.item.MPickaxeItem;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
@@ -43,7 +44,7 @@ public class BlastMiningPacket {
                 if (serverPlayer.level instanceof ServerLevel) {
                     ServerLevel serverLevel = (ServerLevel) serverPlayer.level;
 
-                    if (getItemMain instanceof PickaxeItem || getItemOff instanceof PickaxeItem) {
+                    if (getItemMain instanceof MPickaxeItem || getItemOff instanceof MPickaxeItem) {
                         ThrownTnt thrownTnt = new ThrownTnt(serverLevel, serverPlayer);
                         thrownTnt.setItem(new ItemStack(Items.TNT));
                         thrownTnt.shootFromRotation(serverPlayer, serverPlayer.getXRot(), serverPlayer.getYRot(), -20.0F, 0.7F, 1.0F);

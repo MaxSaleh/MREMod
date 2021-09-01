@@ -3,6 +3,7 @@ package me.maxish0t.mod.client.handler;
 import me.maxish0t.mod.client.input.KeyEntry;
 import me.maxish0t.mod.client.input.KeyType;
 import me.maxish0t.mod.common.content.gathering.mining.ClientMiningEvents;
+import me.maxish0t.mod.common.item.MPickaxeItem;
 import me.maxish0t.mod.server.ModNetwork;
 import me.maxish0t.mod.server.packets.mining.BlastMiningPacket;
 import me.maxish0t.mod.utilities.ModReference;
@@ -58,8 +59,8 @@ public class KeyInputHandler {
 
             switch (keyType) {
                 case AbilitiesMenu -> {
-                    if (clientPlayer.getMainHandItem().getItem() instanceof PickaxeItem ||
-                            clientPlayer.getOffhandItem().getItem() instanceof PickaxeItem) {
+                    if (clientPlayer.getMainHandItem().getItem() instanceof MPickaxeItem ||
+                            clientPlayer.getOffhandItem().getItem() instanceof MPickaxeItem) {
                         showMiningOverlay = true;
                     } else {
                         clientPlayer.sendMessage(new TextComponent(ChatFormatting.RED +

@@ -4,6 +4,7 @@ import com.mojang.blaze3d.vertex.PoseStack;
 import me.maxish0t.mod.client.gui.overlay.util.OverlayAbilitiesUtil;
 import me.maxish0t.mod.client.gui.util.RenderUtil;
 import me.maxish0t.mod.client.handler.KeyInputHandler;
+import me.maxish0t.mod.common.item.MPickaxeItem;
 import me.maxish0t.mod.server.packets.AbilityCoolDownPacket;
 import me.maxish0t.mod.server.packets.UpdateLevelPacket;
 import me.maxish0t.mod.utilities.ModReference;
@@ -38,13 +39,13 @@ public class MiningOverlay {
             entityData.put(Player.PERSISTED_NBT_TAG, persistedData);
 
             if (!(minecraft.screen instanceof DeathScreen)) {
-                if (player.getMainHandItem().getItem() instanceof PickaxeItem ||
-                        player.getOffhandItem().getItem() instanceof PickaxeItem) {
+                if (player.getMainHandItem().getItem() instanceof MPickaxeItem ||
+                        player.getOffhandItem().getItem() instanceof MPickaxeItem) {
 
-                    if (!KeyInputHandler.showMiningOverlay) { // TODO to true
+                    if (KeyInputHandler.showMiningOverlay) {
 
                         RenderUtil.drawText(poseStack, ChatFormatting.BLUE + "Mining Level: " +
-                                UpdateLevelPacket.level, 40.0F, 5.0F);
+                                (int) UpdateLevelPacket.level, 40.0F, 5.0F);
 
                         ResourceLocation image = new ResourceLocation(ModReference.MOD_ID, "textures/icons/gathering/mining/pickaxe.png");
                         RenderUtil.drawTexture(poseStack, image, 5, 5, 0, 32, 32, 32, 32,
