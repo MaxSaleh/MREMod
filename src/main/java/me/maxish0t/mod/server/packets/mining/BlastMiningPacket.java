@@ -2,13 +2,10 @@ package me.maxish0t.mod.server.packets.mining;
 
 import me.maxish0t.mod.common.entity.projectile.ThrownTnt;
 import me.maxish0t.mod.common.handlers.ServerTickHandler;
-import net.minecraft.core.BlockPos;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.world.entity.item.PrimedTnt;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.entity.projectile.ThrownExperienceBottle;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
@@ -52,6 +49,7 @@ public class BlastMiningPacket {
                         thrownTnt.shootFromRotation(serverPlayer, serverPlayer.getXRot(), serverPlayer.getYRot(), -20.0F, 0.7F, 1.0F);
                         serverLevel.addFreshEntity(thrownTnt);
 
+                        //coolDownLeft = ServerTickHandler.playerBlastMiningCoolDown.get(serverPlayer.getUUID());
                         ServerTickHandler.playerBlastMiningCoolDown.put(serverPlayer.getUUID(), 100);
                     }
                 }

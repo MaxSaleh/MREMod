@@ -9,6 +9,7 @@ import me.maxish0t.mod.common.content.gathering.mining.CommonMiningEvents;
 import me.maxish0t.mod.common.content.gathering.mining.MiningEvents;
 import me.maxish0t.mod.common.entity.RegisterEntities;
 import me.maxish0t.mod.common.handlers.ServerTickHandler;
+import me.maxish0t.mod.common.init.ModItems;
 import me.maxish0t.mod.server.ModNetwork;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.RegisterCommandsEvent;
@@ -41,6 +42,7 @@ public class MREMod {
         // Server Side Stuff
         MinecraftForge.EVENT_BUS.register(new ServerTickHandler());
         RegisterEntities.register();
+        ModItems.register();
     }
 
     @SubscribeEvent

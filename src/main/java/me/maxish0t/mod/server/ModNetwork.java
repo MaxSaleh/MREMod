@@ -1,5 +1,6 @@
 package me.maxish0t.mod.server;
 
+import me.maxish0t.mod.server.packets.AbilityCoolDownPacket;
 import me.maxish0t.mod.server.packets.UpdateLevelPacket;
 import me.maxish0t.mod.server.packets.mining.*;
 import me.maxish0t.mod.utilities.ModReference;
@@ -41,6 +42,12 @@ public class ModNetwork {
                 MiningAbilitiesPacket::decode,
                 MiningAbilitiesPacket::handle,
                 Optional.of(NetworkDirection.PLAY_TO_SERVER)
+        );
+        CHANNEL.registerMessage(networkId++,
+                AbilityCoolDownPacket.class,
+                AbilityCoolDownPacket::encode,
+                AbilityCoolDownPacket::decode,
+                AbilityCoolDownPacket::handle
         );
     }
 }

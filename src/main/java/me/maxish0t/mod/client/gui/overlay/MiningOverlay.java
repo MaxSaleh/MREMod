@@ -4,6 +4,7 @@ import com.mojang.blaze3d.vertex.PoseStack;
 import me.maxish0t.mod.client.gui.overlay.util.OverlayAbilitiesUtil;
 import me.maxish0t.mod.client.gui.util.RenderUtil;
 import me.maxish0t.mod.client.handler.KeyInputHandler;
+import me.maxish0t.mod.server.packets.AbilityCoolDownPacket;
 import me.maxish0t.mod.server.packets.UpdateLevelPacket;
 import me.maxish0t.mod.utilities.ModReference;
 import net.minecraft.ChatFormatting;
