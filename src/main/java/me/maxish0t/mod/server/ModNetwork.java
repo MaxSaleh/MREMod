@@ -1,6 +1,5 @@
 package me.maxish0t.mod.server;
 
-import me.maxish0t.mod.server.packets.SendToastPacket;
 import me.maxish0t.mod.server.packets.UpdateLevelPacket;
 import me.maxish0t.mod.server.packets.mining.*;
 import me.maxish0t.mod.utilities.ModReference;
@@ -24,14 +23,12 @@ public class ModNetwork {
     public static void register() {
         int networkId = 0;
 
-        /**
         CHANNEL.registerMessage(networkId++,
-                SendToastPacket.class,
-                SendToastPacket::encode,
-                SendToastPacket::decode,
-                SendToastPacket::handle,
-                Optional.of(NetworkDirection.PLAY_TO_CLIENT)
-        );**/
+                BlastMiningPacket.class,
+                BlastMiningPacket::encode,
+                BlastMiningPacket::decode,
+                BlastMiningPacket::handle
+        );
         CHANNEL.registerMessage(networkId++,
                 UpdateLevelPacket.class,
                 UpdateLevelPacket::encode,

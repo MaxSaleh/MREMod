@@ -50,10 +50,13 @@ public class MiningOverlay {
                                 32, 32, 32, 32);
 
                         // Super Breaker Ability
-                        OverlayAbilitiesUtil.renderSuperBreakerBox("Super Breaker", "super_breaker", poseStack, 5D, 50D);
+                        OverlayAbilitiesUtil.renderSuperBreakerBox("Super Breaker", "super_breaker", poseStack, 5D, 40D);
 
                         // Double Ores Ability
-                        OverlayAbilitiesUtil.renderDoubleOresBox("Double Ores", "double_ores", poseStack, 5D, 140D);
+                        OverlayAbilitiesUtil.renderDoubleOresBox("Double Ores", "double_ores", poseStack, 5D, 105D);
+
+                        // Blast Mining Ability
+                        OverlayAbilitiesUtil.renderBlastMiningBox("Blast Mining", "blast_mining", poseStack, 5D, 170D);
 
                     } else {
                         RenderUtil.drawText(poseStack, ChatFormatting.RED + "Hold V To Open Abilities Menu For Item",

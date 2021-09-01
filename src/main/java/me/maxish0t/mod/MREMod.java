@@ -7,9 +7,12 @@ import me.maxish0t.mod.common.commands.ResetDataCommand;
 import me.maxish0t.mod.common.commands.SetLevelCommand;
 import me.maxish0t.mod.common.content.gathering.mining.CommonMiningEvents;
 import me.maxish0t.mod.common.content.gathering.mining.MiningEvents;
+import me.maxish0t.mod.common.entity.RegisterEntities;
+import me.maxish0t.mod.common.handlers.ServerTickHandler;
 import me.maxish0t.mod.server.ModNetwork;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.RegisterCommandsEvent;
+import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
@@ -21,6 +24,9 @@ public class MREMod {
     public MREMod() {
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::clientSetup);
 
+        // Get an instance of the mod event bus
+        final IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
+
         ModNetwork.register();
         MinecraftForge.EVENT_BUS.register(this);
 
@@ -31,6 +37,10 @@ public class MREMod {
         // Capabilities
         MinecraftForge.EVENT_BUS.register(new ModCapabilities());
         MinecraftForge.EVENT_BUS.register(new CapabilityLevelHandler());
+
+        // Server Side Stuff
+        MinecraftForge.EVENT_BUS.register(new ServerTickHandler());
+        RegisterEntities.register();
     }
 
     @SubscribeEvent

@@ -2,7 +2,11 @@ package me.maxish0t.mod.client.handler;
 
 import me.maxish0t.mod.client.input.KeyEntry;
 import me.maxish0t.mod.client.input.KeyType;
+import me.maxish0t.mod.server.ModNetwork;
+import me.maxish0t.mod.server.packets.mining.BlastMiningPacket;
 import me.maxish0t.mod.utilities.ModReference;
+import net.java.games.input.Controller;
+import net.java.games.input.Mouse;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.player.LocalPlayer;
@@ -13,6 +17,7 @@ import net.minecraftforge.client.event.InputEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fmlclient.registry.ClientRegistry;
+import net.minecraftforge.fmllegacy.network.NetworkDirection;
 
 import java.util.ArrayList;
 
@@ -25,6 +30,7 @@ public class KeyInputHandler {
     public KeyInputHandler() {
         keyEntries = new ArrayList<>();
         keyEntries.add(new KeyEntry(KeyType.AbilitiesMenu));
+        keyEntries.add(new KeyEntry(KeyType.BlastMining));
 
         for (KeyEntry keyEntry : keyEntries) {
             ClientRegistry.registerKeyBinding(keyEntry.keyBinding);
@@ -57,6 +63,12 @@ public class KeyInputHandler {
                     } else {
                         clientPlayer.sendMessage(new TextComponent(ChatFormatting.RED +
                                 "You are not holding a correct item for me to bring up any information."), clientPlayer.getUUID());
+                    }
+                    break;
+                }
+                case BlastMining -> {
+                    if(minecraft.mouseHandler.isRightPressed()) {
+                        ModNetwork.CHANNEL.sendTo(new BlastMiningPacket(), minecraft.getConnection().getConnection(), NetworkDirection.PLAY_TO_SERVER);
                     }
                     break;
                 }

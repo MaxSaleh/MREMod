@@ -36,7 +36,7 @@ public class OverlayAbilitiesUtil {
             RenderUtil.drawTextScaled(poseStack, ModUtil.renderColoredText("&1&lUNLOCKED"), (float)posX + 55, (float)posY + 30, 0.8F);
         } else {
             RenderUtil.drawTextScaled(poseStack, ModUtil.renderColoredText("&t&lLOCKED"), (float)posX + 63, (float)posY + 30, 0.8F);
-            RenderUtil.drawTextScaled(poseStack, ChatFormatting.YELLOW + "" + (int)UpdateLevelPacket.level + ChatFormatting.WHITE + "/" + ChatFormatting.YELLOW + (int) ClientMiningEvents.SUPER_BREAKER_AMOUNT + " " + ChatFormatting.UNDERLINE + "level needed", (float)posX + 17, (float)posY + 64, 0.8F);
+            RenderUtil.drawTextScaled(poseStack, ChatFormatting.YELLOW + "" + (int)UpdateLevelPacket.level + ChatFormatting.WHITE + "/" + ChatFormatting.YELLOW + (int) ClientMiningEvents.SUPER_BREAKER_AMOUNT + " " + ChatFormatting.UNDERLINE + "level needed", (float)posX + 17, (float)posY + 62, 0.8F);
         }
 
         RenderUtil.drawTextScaled(poseStack, ChatFormatting.BLUE + "Mining Speed" + " " + ChatFormatting.GREEN + "+" + ChatFormatting.BLUE + "20%", (float)posX + 51, (float)posY + 60, 0.7F);
@@ -71,16 +71,57 @@ public class OverlayAbilitiesUtil {
 
         RenderUtil.drawTexture(poseStack, resourceLocation, (int)posX + 3, (int)posY + 3, 0, 27, 27, 32, 32, 32, 32, 32, 32);
 
-        RenderUtil.drawTextScaled(poseStack, ChatFormatting.RED + abilityName, (float)posX + 67, (float)posY + 65, 0.7F);
+        RenderUtil.drawTextScaled(poseStack, ChatFormatting.RED + abilityName, (float)posX + 67, (float)posY + 55, 0.7F);
 
         if (ClientMiningEvents.unlockedDoubleOres) {
-            RenderUtil.drawTextScaled(poseStack, ModUtil.renderColoredText("&1&lUNLOCKED"), (float)posX + 55, (float)posY + 55, 0.8F);
+            RenderUtil.drawTextScaled(poseStack, ModUtil.renderColoredText("&1&lUNLOCKED"), (float)posX + 55, (float)posY + 48, 0.8F);
         } else {
-            RenderUtil.drawTextScaled(poseStack, ModUtil.renderColoredText("&t&lLOCKED"), (float)posX + 63, (float)posY + 55, 0.8F);
-            RenderUtil.drawTextScaled(poseStack, ChatFormatting.YELLOW + "" + (int)UpdateLevelPacket.level + ChatFormatting.WHITE + "/" + ChatFormatting.YELLOW + (int) ClientMiningEvents.DOUBLE_ORES_AMOUNT + " " + ChatFormatting.UNDERLINE + "level needed", (float)posX + 20, (float)posY + 87, 0.8F);
+            RenderUtil.drawTextScaled(poseStack, ModUtil.renderColoredText("&t&lLOCKED"), (float)posX + 63, (float)posY + 48, 0.8F);
+            RenderUtil.drawTextScaled(poseStack, ChatFormatting.YELLOW + "" + (int)UpdateLevelPacket.level + ChatFormatting.WHITE + "/" + ChatFormatting.YELLOW + (int) ClientMiningEvents.DOUBLE_ORES_AMOUNT + " " + ChatFormatting.UNDERLINE + "level needed", (float)posX + 20, (float)posY + 79, 0.8F);
         }
 
-        RenderUtil.drawTextScaled(poseStack, ChatFormatting.BLUE + "15% chance double ore drops", (float)posX + 12, (float)posY + 150, 0.6F);
+        RenderUtil.drawTextScaled(poseStack, ChatFormatting.BLUE + "15% chance double ore drops", (float)posX + 12, (float)posY + 126, 0.6F);
+
+        PoseStack statsBar = poseStack;
+        statsBar.pushPose();
+        statsBar.translate(posX, posY + 50, 0D);
+
+        if ((int)UpdateLevelPacket.level < (int) ClientMiningEvents.DOUBLE_ORES_AMOUNT) {
+            RenderUtil.drawRectangle(statsBar, Math.round(ModUtil.calculatePercentageFloat((int)UpdateLevelPacket.level, (int) ClientMiningEvents.DOUBLE_ORES_AMOUNT)),  8, 2, 2, 1006063360);
+        }
+
+        RenderUtil.drawRectWithOutline(statsBar, 100,  10, 0, 0, 1426063360, 587202559, 1);
+        statsBar.popPose();
+    }
+
+    public static void renderBlastMiningBox(String abilityName, String abilityIconName, PoseStack poseStack, double posX, double posY) {
+        ResourceLocation resourceLocation = new ResourceLocation(ModReference.MOD_ID, "textures/icons/gathering/mining/" + abilityIconName + ".png");
+        int rectWidth = 100, rectHeight = 60;
+
+        PoseStack poseOne = poseStack;
+        poseOne.pushPose();
+        poseOne.translate(posX, posY, 0D);
+        RenderUtil.drawRectWithOutline(poseOne, rectWidth,  rectHeight, 0, 0, 1426063360, 587202559, 1);
+        poseOne.popPose();
+
+        PoseStack poseTwo = poseStack;
+        poseTwo.pushPose();
+        poseTwo.translate(posX, posY, 0D);
+        RenderUtil.drawRectWithOutline(poseTwo, rectWidth / 3,  rectHeight / 2 + 3, 0, 0, 1426063360, 587202559, 1);
+        poseTwo.popPose();
+
+        RenderUtil.drawTexture(poseStack, resourceLocation, (int)posX + 3, (int)posY + 3, 0, 27, 27, 32, 32, 32, 32, 32, 32);
+
+        RenderUtil.drawTextScaled(poseStack, ChatFormatting.RED + abilityName, (float)posX + 68, (float)posY + 85, 0.7F);
+
+        if (ClientMiningEvents.unlockedDoubleOres) {
+            RenderUtil.drawTextScaled(poseStack, ModUtil.renderColoredText("&1&lUNLOCKED"), (float)posX + 55, (float)posY + 65, 0.8F);
+        } else {
+            RenderUtil.drawTextScaled(poseStack, ModUtil.renderColoredText("&t&lLOCKED"), (float)posX + 63, (float)posY + 65, 0.8F);
+            RenderUtil.drawTextScaled(poseStack, ChatFormatting.YELLOW + "" + (int)UpdateLevelPacket.level + ChatFormatting.WHITE + "/" + ChatFormatting.YELLOW + (int) ClientMiningEvents.DOUBLE_ORES_AMOUNT + " " + ChatFormatting.UNDERLINE + "level needed", (float)posX + 20, (float)posY + 95, 0.8F);
+        }
+
+        RenderUtil.drawTextScaled(poseStack, ChatFormatting.BLUE + "Shift Right-Click For TnT", (float)posX + 12, (float)posY + 121, 0.7F);
 
         PoseStack statsBar = poseStack;
         statsBar.pushPose();
