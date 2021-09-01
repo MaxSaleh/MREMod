@@ -114,11 +114,11 @@ public class OverlayAbilitiesUtil {
 
         RenderUtil.drawTextScaled(poseStack, ChatFormatting.RED + abilityName, (float)posX + 68, (float)posY + 85, 0.7F);
 
-        if (ClientMiningEvents.unlockedDoubleOres) {
+        if (ClientMiningEvents.unlockedBlastMining) {
             RenderUtil.drawTextScaled(poseStack, ModUtil.renderColoredText("&1&lUNLOCKED"), (float)posX + 55, (float)posY + 65, 0.8F);
         } else {
             RenderUtil.drawTextScaled(poseStack, ModUtil.renderColoredText("&t&lLOCKED"), (float)posX + 63, (float)posY + 65, 0.8F);
-            RenderUtil.drawTextScaled(poseStack, ChatFormatting.YELLOW + "" + (int)UpdateLevelPacket.level + ChatFormatting.WHITE + "/" + ChatFormatting.YELLOW + (int) ClientMiningEvents.DOUBLE_ORES_AMOUNT + " " + ChatFormatting.UNDERLINE + "level needed", (float)posX + 20, (float)posY + 95, 0.8F);
+            RenderUtil.drawTextScaled(poseStack, ChatFormatting.YELLOW + "" + (int)UpdateLevelPacket.level + ChatFormatting.WHITE + "/" + ChatFormatting.YELLOW + (int) ClientMiningEvents.BLAST_MINING_AMOUNT + " " + ChatFormatting.UNDERLINE + "level needed", (float)posX + 20, (float)posY + 95, 0.8F);
         }
 
         RenderUtil.drawTextScaled(poseStack, ChatFormatting.BLUE + "Shift Right-Click For TnT", (float)posX + 12, (float)posY + 121, 0.7F);
@@ -127,8 +127,8 @@ public class OverlayAbilitiesUtil {
         statsBar.pushPose();
         statsBar.translate(posX, posY + 50, 0D);
 
-        if ((int)UpdateLevelPacket.level < (int) ClientMiningEvents.DOUBLE_ORES_AMOUNT) {
-            RenderUtil.drawRectangle(statsBar, Math.round(ModUtil.calculatePercentageFloat((int)UpdateLevelPacket.level, (int) ClientMiningEvents.DOUBLE_ORES_AMOUNT)),  8, 2, 2, 1006063360);
+        if ((int)UpdateLevelPacket.level < (int) ClientMiningEvents.BLAST_MINING_AMOUNT) {
+            RenderUtil.drawRectangle(statsBar, Math.round(ModUtil.calculatePercentageFloat((int)UpdateLevelPacket.level, (int) ClientMiningEvents.BLAST_MINING_AMOUNT)),  8, 2, 2, 1006063360);
         }
 
         RenderUtil.drawRectWithOutline(statsBar, 100,  10, 0, 0, 1426063360, 587202559, 1);

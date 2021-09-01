@@ -2,6 +2,7 @@ package me.maxish0t.mod.client.handler;
 
 import me.maxish0t.mod.client.input.KeyEntry;
 import me.maxish0t.mod.client.input.KeyType;
+import me.maxish0t.mod.common.content.gathering.mining.ClientMiningEvents;
 import me.maxish0t.mod.server.ModNetwork;
 import me.maxish0t.mod.server.packets.mining.BlastMiningPacket;
 import me.maxish0t.mod.utilities.ModReference;
@@ -67,8 +68,10 @@ public class KeyInputHandler {
                     break;
                 }
                 case BlastMining -> {
-                    if(minecraft.mouseHandler.isRightPressed()) {
-                        ModNetwork.CHANNEL.sendTo(new BlastMiningPacket(), minecraft.getConnection().getConnection(), NetworkDirection.PLAY_TO_SERVER);
+                    if (ClientMiningEvents.unlockedBlastMining) {
+                        if(minecraft.mouseHandler.isRightPressed()) {
+                            ModNetwork.CHANNEL.sendTo(new BlastMiningPacket(), minecraft.getConnection().getConnection(), NetworkDirection.PLAY_TO_SERVER);
+                        }
                     }
                     break;
                 }

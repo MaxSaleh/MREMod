@@ -1,18 +1,18 @@
 package me.maxish0t.mod.server.packets.mining;
 
 import net.minecraft.network.FriendlyByteBuf;
-import net.minecraft.server.level.ServerPlayer;
-import net.minecraftforge.fmllegacy.network.NetworkDirection;
 import net.minecraftforge.fmllegacy.network.NetworkEvent;
 
 import java.util.function.Supplier;
 
-public class MiningAbilitiesPacket
-{
+public class MiningAbilitiesPacket {
+
     public static int idAbility;
     public static boolean unlocked;
+
     public static boolean unlockedSuperBreaker;
     public static boolean unlockedDoubleOres;
+    public static boolean unlockedBlastMining;
 
     public MiningAbilitiesPacket() { }
 
@@ -31,6 +31,12 @@ public class MiningAbilitiesPacket
                 unlockedDoubleOres = true;
             } else {
                 unlockedDoubleOres = false;
+            }
+        } else if (idAbility == 3) {
+            if (unlocked) {
+                unlockedBlastMining = true;
+            } else {
+                unlockedBlastMining = false;
             }
         }
     }

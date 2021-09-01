@@ -18,9 +18,11 @@ public class ClientMiningEvents {
 
     public static final double SUPER_BREAKER_AMOUNT = 5;
     public static final double DOUBLE_ORES_AMOUNT = 10;
+    public static final double BLAST_MINING_AMOUNT = 15;
 
     public static boolean unlockedSuperBreaker = false;
     public static boolean unlockedDoubleOres = false;
+    public static boolean unlockedBlastMining = false;
 
     /**
      * Ability checks
@@ -33,6 +35,7 @@ public class ClientMiningEvents {
 
             MREToast miningSpeedToast = new MREToast(ModUtil.renderColoredText("&5&lABILITY UNLOCKED!"), ModUtil.renderColoredText("&bMining Speed &1+&b5%"));
             MREToast doubleOresToast = new MREToast(ModUtil.renderColoredText("&5&lABILITY UNLOCKED!"), ModUtil.renderColoredText("&115% &bof ore doubling"));
+            MREToast blastMiningToast = new MREToast(ModUtil.renderColoredText("&5&lABILITY UNLOCKED!"), ModUtil.renderColoredText("&bShift Right-Click For TnT"));
 
             // Super Breaker Ability
             if (miningLevel >= SUPER_BREAKER_AMOUNT) {
@@ -58,6 +61,19 @@ public class ClientMiningEvents {
             } else {
                 ModNetwork.CHANNEL.sendTo(new MiningAbilitiesPacket(2, false), minecraft.getConnection().getConnection(), NetworkDirection.PLAY_TO_SERVER);
                 unlockedDoubleOres = false;
+            }
+
+            // Blast Mining Ability
+            if (miningLevel >= BLAST_MINING_AMOUNT) {
+                if (minecraft.getToasts().getToast(MREToast.class, blastMiningToast.getToken()) == null && !unlockedBlastMining) {
+                    minecraft.getToasts().addToast(blastMiningToast);
+                }
+
+                ModNetwork.CHANNEL.sendTo(new MiningAbilitiesPacket(3, true), minecraft.getConnection().getConnection(), NetworkDirection.PLAY_TO_SERVER);
+                unlockedBlastMining = true;
+            } else {
+                ModNetwork.CHANNEL.sendTo(new MiningAbilitiesPacket(3, false), minecraft.getConnection().getConnection(), NetworkDirection.PLAY_TO_SERVER);
+                unlockedBlastMining = false;
             }
         }
     }
