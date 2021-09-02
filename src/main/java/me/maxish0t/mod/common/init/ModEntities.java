@@ -1,4 +1,4 @@
-package me.maxish0t.mod.common.entity;
+package me.maxish0t.mod.common.init;
 
 import me.maxish0t.mod.common.entity.projectile.ThrownTnt;
 import me.maxish0t.mod.utilities.ModReference;
@@ -10,7 +10,7 @@ import net.minecraftforge.fmllegacy.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 
-public class RegisterEntities {
+public class ModEntities {
 
     public static final DeferredRegister<EntityType<?>> ENTITIES = DeferredRegister.create(ForgeRegistries.ENTITIES, ModReference.MOD_ID);
 

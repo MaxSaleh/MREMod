@@ -1,6 +1,5 @@
 package me.maxish0t.mod.common.capability.level;
 
-import me.maxish0t.mod.common.capability.ModCapabilities;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraftforge.common.capabilities.Capability;

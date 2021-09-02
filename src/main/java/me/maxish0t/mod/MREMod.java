@@ -1,13 +1,13 @@
 package me.maxish0t.mod;
 
 import me.maxish0t.mod.client.handler.KeyInputHandler;
-import me.maxish0t.mod.common.capability.ModCapabilities;
+import me.maxish0t.mod.common.init.ModCapabilities;
 import me.maxish0t.mod.common.capability.level.CapabilityLevelHandler;
 import me.maxish0t.mod.common.commands.ResetDataCommand;
 import me.maxish0t.mod.common.commands.SetLevelCommand;
 import me.maxish0t.mod.common.content.gathering.mining.CommonMiningEvents;
 import me.maxish0t.mod.common.content.gathering.mining.MiningEvents;
-import me.maxish0t.mod.common.entity.RegisterEntities;
+import me.maxish0t.mod.common.init.ModEntities;
 import me.maxish0t.mod.common.handlers.ServerTickHandler;
 import me.maxish0t.mod.common.init.ModItems;
 import me.maxish0t.mod.server.ModNetwork;
@@ -41,7 +41,7 @@ public class MREMod {
 
         // Server Side Stuff
         MinecraftForge.EVENT_BUS.register(new ServerTickHandler());
-        RegisterEntities.register();
+        ModEntities.register();
         ModItems.register();
     }
 
